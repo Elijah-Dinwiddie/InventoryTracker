@@ -16,7 +16,7 @@
 		<div class="top-left">
 			<header class="box-label">Store Inventory Tracker</header>
 			<div class="data-entry">
-				<form action="submit.js" method="post" class="submit-form">
+				<form action="server.js" method="post" class="submit-form">
 					<div class="form-top">
 						<div class="form-top-left">
 							<p class="padding">Enter Data</p>
@@ -54,19 +54,19 @@
 		<div class="top-right">
 			<header class="box-label"><b>Filter Items</b></header>
 			<div class="data-filter">
-				<form action="submit.js" method="post" class="submit-form">
+				<form action="server.js" method="post" class="submit-form">
 					<div class="filter-div">
 						<input required name="filter_item" type="text" placeholder="Enter item ID" class="margin">
 					</div>
 					<div class="form-line"></div>
 					<div class="filter-div">
-						<input type="radio" id="show" name="show_delete" class="margin">
+						<input type="radio" id="show" name="show_data" class="margin">
 						<label for="show">Show data</label><br>
-						<input type="radio" id="hide" name="show_delete" class="margin">
+						<input type="radio" id="hide" name="hide_data" class="margin">
 						<label for="hide">Hide data</label><br>
-						<input type="radio" id="hide-all" name="show_delete" class="margin">
+						<input type="radio" id="hide-all" name="hide_all" class="margin">
 						<label for="hide-all">Hide all</label><br>
-						<input type="radio" id="delete" name="show_delete" class="margin">
+						<input type="radio" id="delete" name="delete_data" class="margin">
 						<label for="delete">Delete Data</label>
 					</div>
 					<div class="form-line"></div>
