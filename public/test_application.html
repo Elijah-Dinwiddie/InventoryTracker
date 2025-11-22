@@ -1,89 +1,90 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Test project</title>
-	<link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-	<div class="headerDiv">
-		<img src="./Tacobell.comLogo.png" class="logo1">
-		<p class="header1">Taco Bell Inventory Tracker</p>
-		<img src="./Tacobell.comLogo.png" class="logo2">
-	</div>
-	<div class="top-half">
-		<div class="top-left">
-			<header class="box-label">Store Inventory Tracker</header>
-			<div class="data-entry">
-				<form action="server.js" method="post" class="submit-form">
-					<div class="form-top">
-						<div class="form-top-left">
-							<p class="padding">Enter Data</p>
-						</div>
-						<div class="form-top-right">
-							<input type="submit" class="margin">
-						</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test project</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="headerDiv">
+	<img src="./Tacobell.comLogo.png" class="logo1">
+	<p class="header1">Taco Bell Inventory Tracker</p>
+	<img src="./Tacobell.comLogo.png" class="logo2">
+</div>
+<div class="top-half">
+	<div class="top-left">
+		<header class="box-label">Store Inventory Tracker</header>
+		<div class="data-entry">
+			<form action="/filter" method="post" class="submit-form" id="submit-form">
+				<div class="form-top">
+					<div class="form-top-left">
+						<p class="padding">Enter Data</p>
 					</div>
-					<div class="form-bottom">
-						<div class="input-name">
-							<p class="border padding">Item Name</p>
-							<div class="form-line"></div>
-							<p class="border padding">Item Price</p>
-							<div class="form-line"></div>
-							<p class="border padding">Item Code</p>
-						</div>
-						<div class="divide-line"></div>
-						<div class="input-box">
-							<div class="input-border">
-								<input required name="item-name" type="text" placeholder="Enter item name" class="margin">
-							</div>
-							<div class="form-line"></div>
-							<div class="input-border">
-								<input required name="item-price" type="number" placeholder="Enter item price" class="margin">
-							</div>
-							<div class="form-line"></div>
-							<div class="input-border">
-								<input required name="item-code" type="text" placeholder="Enter item code" class="margin">
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div class="top-right">
-			<header class="box-label"><b>Filter Items</b></header>
-			<div class="data-filter">
-				<form action="server.js" method="post" class="submit-form">
-					<div class="filter-div">
-						<input required name="filter_item" type="text" placeholder="Enter item ID" class="margin">
-					</div>
-					<div class="form-line"></div>
-					<div class="filter-div">
-						<input type="radio" id="show" name="show_data" class="margin">
-						<label for="show">Show data</label><br>
-						<input type="radio" id="hide" name="hide_data" class="margin">
-						<label for="hide">Hide data</label><br>
-						<input type="radio" id="hide-all" name="hide_all" class="margin">
-						<label for="hide-all">Hide all</label><br>
-						<input type="radio" id="delete" name="delete_data" class="margin">
-						<label for="delete">Delete Data</label>
-					</div>
-					<div class="form-line"></div>
-					<div class="filter-div">
+					<div class="form-top-right">
 						<input type="submit" class="margin">
 					</div>
-				</form>
-			</div>
+				</div>
+				<div class="form-bottom">
+					<div class="input-name">
+						<p class="border padding">Item Name</p>
+						<div class="form-line"></div>
+						<p class="border padding">Item Price</p>
+						<div class="form-line"></div>
+						<p class="border padding">Item Code</p>
+					</div>
+					<div class="divide-line"></div>
+					<div class="input-box">
+						<div class="input-border">
+							<input required name="item-name" type="text" placeholder="Enter item name" class="margin">
+						</div>
+						<div class="form-line"></div>
+						<div class="input-border">
+							<input required name="item-price" type="number" placeholder="Enter item price" class="margin">
+						</div>
+						<div class="form-line"></div>
+						<div class="input-border">
+							<input required name="item-code" type="text" placeholder="Enter item code" class="margin">
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-	<div class="bottom-half">
-
-			<header class="box-label">Output</header>
-			<div class="output">
-				
-			</div>
+	<div class="top-right">
+		<header class="box-label"><b>Filter Items</b></header>
+		<div class="data-filter">
+			<form action="filter" method="post" class="submit-form">
+				<div class="filter-div">
+					<input required name="filter_item" type="text" placeholder="Enter item ID" class="margin">
+				</div>
+				<div class="form-line"></div>
+				<div class="filter-div">
+					<input type="radio" id="show" name="show_data" class="margin">
+					<label for="show">Show data</label><br>
+					<input type="radio" id="hide" name="hide_data" class="margin">
+					<label for="hide">Hide data</label><br>
+					<input type="radio" id="hide-all" name="hide_all" class="margin">
+					<label for="hide-all">Hide all</label><br>
+					<input type="radio" id="delete" name="delete_data" class="margin">
+					<label for="delete">Delete Data</label>
+				</div>
+				<div class="form-line"></div>
+				<div class="filter-div">
+					<input type="submit" class="margin">
+				</div>
+			</form>
+		</div>
 	</div>
-    </body>
-	
-    </html>
+</div>
+<div class="bottom-half">
+
+		<header class="box-label">Output</header>
+		<div class="output">
+			<p id="output-text">This is Sample Text</p>
+		</div>
+</div>
+<script src="./script.js"></script>
+</body>
+
+</html>

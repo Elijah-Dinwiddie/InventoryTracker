@@ -49,3 +49,39 @@ table ingredients {
   ingredient_name varchar
 }
 
+constraints added: 
+Alter table Recipe
+Add constraint FK_Recipe_MenuItems
+foreign key (item_id)
+references MenuItems(item_id)
+on delete cascade
+
+alter table Inventory
+add constraint FK_Inventory_Store
+foreign key (store_id)
+references Store(store_id)
+on delete cascade
+
+alter table StoreMenuItems
+add constraint FK_StoreMenuItems_MenuItems
+foreign key (item_id)
+references MenuItems(item_id)
+on delete cascade
+
+alter table StoreMenuItems
+add constraint FK_StoreMenuItems_Store
+foreign key (store_id)
+references Store(store_id)
+on delete cascade;
+
+CREATE TRIGGER trg_AddMenuItemToAllStores
+ON menuItems
+AFTER INSERT
+AS
+BEGIN
+    -- Insert a row for each store for each new menu item
+    INSERT INTO StoreMenuItems (store_id, item_id)
+    SELECT s.store_id, i.item_id
+    FROM Store s
+    CROSS JOIN inserted i;
+END;
