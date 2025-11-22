@@ -44,24 +44,31 @@ app.get('/', (req, res) => {
 app.post('/filter', (req, res) => {
     console.log("server recieved: ",req.body); 
 
+    const request = new sql.Request();
+    request.input('id', sql.Int, req.body["item-code"]);
+    request.input('name', sql.VarChar, req.body["item-name"]);
+    request.input('price', sql.Int, req.body["item-price"]);
+
     //create new menu item entry
-    sql.query`
+    request.query(`
         SET IDENTITY_INSERT menuItems ON;
         insert into menuItems (item_id, item_name, item_price, vegan) 
         values (
-            ${req.body["item-code"]}, 
-            ${req.body["item-name"]}, 
-            ${req.body["item-price"]}, 
+            @id, 
+            @name, 
+            @price,
             0
-        )`
+        );
+
+        SET IDENTITY_INSERT menuItems OFF;
+        
+        insert into Recipe (item_id, ingredient_id, amount)
+        values (@id, 1, 20);
+    `)
     .then(result => console.log("result of menueItems insert: ", result))
     .catch(err => console.error('SQL error', err));
 
-    //new recipe entry for new item. temp values for ingredient_id and amount.
-    sql.query`insert into Recipe (item_id, ingredient_id, amount)
-        values (${req.body["item-code"]}, 1, 20)`
-    .then(result => console.log("result of Recipe insert: ", result))
-    .catch(err => console.error('SQL error', err));
+    //Need to make it wait before doing next query to avoid foreign key constraint error.
 
     res.redirect('/');
 });
