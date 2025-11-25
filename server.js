@@ -65,12 +65,14 @@ app.post('/filter', (req, res) => {
         insert into Recipe (item_id, ingredient_id, amount)
         values (@id, 1, 20);
     `)
-    .then(result => console.log("result of menueItems insert: ", result))
+    .then(result => {
+        console.log("result of menueItems insert: ", result)
+            res.json({
+                message: 'Item added successfully',
+                sentData: req.body
+            })
+    })
     .catch(err => console.error('SQL error', err));
-
-    //Need to make it wait before doing next query to avoid foreign key constraint error.
-
-    res.redirect('/');
 });
 
 //Starts  server on port 3000.

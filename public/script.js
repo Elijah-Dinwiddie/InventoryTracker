@@ -1,20 +1,24 @@
-//TODO: work on implementing displaying response from server without reloading page
+const responseText = document.getElementById('output-text');
 
-// const responseText = document.getElementById('output-text');
+document.querySelector('.submit-form').addEventListener('submit', getResponse);
 
-// document.querySelector('.submit-form').addEventListener('submit', getResponse);
+//Function to handle form submission and fetch response from the server.
+async function getResponse(event) {
+    event.preventDefault();
 
-// // async function getResponse(event) {
-// //     event.preventDefault(); // Prevent the default form submission behavior
+    const formData = new FormData(event.target);
 
-// //     const formData = await fetch('/filter', {
-// //         method: 'POST',
-// //         headers: {
-// //             'Content-Type': 'application/x-www-form-urlencoded',
-// //         },
-// //         body: params
-// //     })
-// //     .then()
-// //         responseText.innerText = formData.body;
-    
-// // }
+    const response = await fetch('/filter', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(formData)
+    });
+
+    const data = await response.json();
+    responseText.innerText = `
+        Server says: ${data.message}
+        You sent: ${JSON.stringify(data.sentData, null, 2)}
+    `;
+}

@@ -103,7 +103,7 @@ body {
     height: 80%;
     display: flex;
 }
-.submit-form {
+.submit-form, .submit-filter {
     height: 100%;
     width: 100%;
 }
