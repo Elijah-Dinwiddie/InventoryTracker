@@ -17,8 +17,17 @@ async function getResponse(event) {
     });
 
     const data = await response.json();
-    responseText.innerText = `
-        Server says: ${data.message}
-        You sent: ${JSON.stringify(data.sentData, null, 2)}
-    `;
+
+    switch(data.errorCode) {
+        case 2627: 
+            responseText.innerText = 
+                `The item ID "${data.sentData["item-code"]}" is already in use.
+                Please choose a different Item ID.`;
+            break;
+        default:
+            responseText.innerText = 
+                `Server says: ${data.message}
+                You sent: ${JSON.stringify(data.sentData, null, 2)}`;
+            break;
+    }
 }

@@ -51,6 +51,8 @@ app.post('/filter', (req, res) => {
 
     //create new menu item entry
     request.query(`
+        SET XACT_ABORT ON;
+
         SET IDENTITY_INSERT menuItems ON;
         insert into menuItems (item_id, item_name, item_price, vegan) 
         values (
@@ -68,11 +70,18 @@ app.post('/filter', (req, res) => {
     .then(result => {
         console.log("result of menueItems insert: ", result)
             res.json({
-                message: 'Item added successfully',
+                message: 'Item added successfully!',
                 sentData: req.body
             })
     })
-    .catch(err => console.error('SQL error', err));
+    .catch(err => {
+        console.error('SQL error', err)
+        res.json({
+            message: 'Error adding item: \n' + err.message,
+            sentData: req.body,
+            errorCode: err.number,
+        })
+    });
 });
 
 //Starts  server on port 3000.
