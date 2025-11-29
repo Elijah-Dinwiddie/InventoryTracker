@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 });
 
 //Handles POST requests to the /filter endpoint.
-app.post('/filter', (req, res) => {
+app.post('/insert', (req, res) => {
     console.log("server recieved: ",req.body); 
 
     const request = new sql.Request();

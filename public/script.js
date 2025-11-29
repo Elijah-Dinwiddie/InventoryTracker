@@ -8,7 +8,7 @@ async function getResponse(event) {
 
     const formData = new FormData(event.target);
 
-    const response = await fetch('/filter', {
+    const response = await fetch('/insert', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
