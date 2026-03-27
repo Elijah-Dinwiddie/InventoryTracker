@@ -1,7 +1,6 @@
 Purpose: A Web application that allows a user to add items to a stores inventory and also track the inventory of the store currently. The current database is set up so we can expand the we applications functions in the future.
 
 
-
 Database: Can view dbdiagram here: https://dbdiagram.io/d/6883ffbfcca18e685ccf9840
 
 Table menuItems {

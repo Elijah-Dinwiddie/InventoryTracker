@@ -1,6 +1,25 @@
 const responseText = document.getElementById('output-text');
 
 document.querySelector('.submit-form').addEventListener('submit', getResponse);
+document.querySelector('.submit-filter').addEventListener('submit', getFilterResponse);
+
+async function getFilterResponse(event) {
+    event.preventDefault();
+
+    const filterData = new FormData(event.target);
+
+    const response = await fetch('/filter', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(filterData)
+    });
+
+    const data = await response.json();
+
+    responseText.innerText = JSON.stringify(data, null, 2);
+}
 
 //Function to handle form submission and fetch response from the server.
 async function getResponse(event) {

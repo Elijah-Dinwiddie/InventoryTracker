@@ -40,9 +40,14 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/test_application.html');
 });
 
-//Handles POST requests to the /filter endpoint.
+//handles GET requests to the /filter endpoint.
+app.get('/filter', (req, res) => {
+    console.log("server recieved: ",req);
+});
+
+//Handles POST requests to the /insert endpoint.
 app.post('/insert', (req, res) => {
-    console.log("server recieved: ",req.body); 
+    console.log("server recieved: ",req.body);
 
     const request = new sql.Request();
     request.input('id', sql.Int, req.body["item-code"]);
